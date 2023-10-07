@@ -6,7 +6,10 @@
   "scripts": {
     "start:dev": "ts-node-dev -r tsconfig-paths/register -r ts-node-dev --respawn ./src/server.ts",
     "test": "jest --runInBand --testTimeout=10000 --forceExit --coverage",
-    "seed": "ts-node ./src/seeder/index.ts"
+    "seed": "ts-node ./src/seeder/index.ts",
+    "prebuild": "rm -rf dist/*",
+    "build": "tsc",
+    "start": "node dist/src/server.js"
   },
   "author": "",
   "license": "ISC",
