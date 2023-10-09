@@ -109,7 +109,9 @@ export const metricController = {
           recordsWithinTheLastThirtyDays,
           HttpStatus.OK
         );
-      } else {
+      }
+      
+      if (req.query.filter === "1h") {
         // defaults to calculate record within the hour
         const oneHourAgo = new Date();
         oneHourAgo.setHours(oneHourAgo.getHours() - 1);
@@ -123,6 +125,10 @@ export const metricController = {
           limit
         );
         return respond<Metric[]>(res, recordsWithinTheHour, HttpStatus.OK);
+      }
+      
+      else {
+        return respond(res, 'no data found for search term', HttpStatus.NOT_FOUND);
       }
     } catch (error) {
       next(error);
